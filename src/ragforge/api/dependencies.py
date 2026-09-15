@@ -4,13 +4,6 @@ from ragforge.memory.manager import MemoryManager
 
 
 class APIContainer:
-    """
-    Dependency container for API services.
-
-    Components can be replaced with real production
-    implementations when the application is assembled.
-    """
-
     def __init__(
         self,
         llm: Any | None = None,
@@ -21,7 +14,6 @@ class APIContainer:
         self.llm = llm
         self.rag_pipeline = rag_pipeline
         self.agent = agent
-
         self.memory_manager = (
             memory_manager
             if memory_manager is not None
@@ -29,25 +21,28 @@ class APIContainer:
         )
 
 
-_container = APIContainer()
+_container: APIContainer | None = None
 
 
 def get_container() -> APIContainer:
-    """Return the global API dependency container."""
+    global _container
+
+    if _container is None:
+        from ragforge.api.application import (
+            create_api_container,
+        )
+
+        _container = create_api_container()
+
     return _container
 
 
 def set_container(
     container: APIContainer,
 ) -> None:
-    """Replace the API dependency container."""
-
     global _container
 
-    if not isinstance(
-        container,
-        APIContainer,
-    ):
+    if not isinstance(container, APIContainer):
         raise TypeError(
             "container must be an APIContainer."
         )

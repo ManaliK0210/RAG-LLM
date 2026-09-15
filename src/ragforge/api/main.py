@@ -3,9 +3,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from ragforge.api.application import (
-    configure_production_services,
-)
 from ragforge.api.config import APIConfig
 from ragforge.api.dependencies import (
     get_container,
@@ -34,11 +31,12 @@ async def lifespan(
     app: FastAPI,
 ):
     """
-    Initialize production services when the
-    FastAPI application starts.
-    """
+    Start the FastAPI application without loading
+    heavyweight ML models during startup.
 
-    configure_production_services()
+    Production services are initialized lazily when
+    an endpoint first requires them.
+    """
 
     yield
 

@@ -48,8 +48,8 @@ def create_api_container() -> APIContainer:
     """
     Build the production API dependency container.
 
-    The container assembles the LLM, embedding model,
-    vector store, retriever, and RAG pipeline.
+    Services are created when the container is requested,
+    rather than at module import time.
     """
 
     llm = PretrainedLLM(

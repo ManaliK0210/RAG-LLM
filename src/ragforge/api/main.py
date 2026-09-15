@@ -54,6 +54,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://rag-kque0t2kz-mmk23.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],

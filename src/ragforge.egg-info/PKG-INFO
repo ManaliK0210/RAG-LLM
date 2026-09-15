@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: ragforge
+Version: 0.1.0
+Summary: End-to-end LLM, RAG and Agentic AI platform
+Requires-Python: <3.13,>=3.11

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+.vscode/
+data/raw/
+data/processed/
+tests/
+models/
+*.bin
+*.safetensorsrequirements.zip

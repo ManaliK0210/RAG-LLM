@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: ragforge-api
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+
+    volumes:
+      - ragforge-data:/app/data/processed
+
+    restart: unless-stopped
+
+volumes:
+  ragforge-data:
